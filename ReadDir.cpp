@@ -1,11 +1,23 @@
+//---------------
+//System Includes
+//---------------
 #include <iostream>
 #include <algorithm>
+#include <dirent.h>
 
+//---------------
+//Private Includes
+//---------------
 #include "ReadDir.h"
 
+//---------------
+//Namespace
+//---------------
 using namespace std;
 
-//local functions
+//---------------
+//Local functions
+//---------------
 //Reads one directory and returns all files matching the fileextensions
 std::vector<std::string> ReadDir(std::string const & dirName);
 
@@ -21,8 +33,9 @@ bool ScanFile(dirent const * const dir);
 //Scans a fil
 bool ScanFileExt(string const & name);
 
-
+//---------------
 //Lokal variables
+//---------------
 //Vector containing the file extensions
 vector<string> fileExt;
 
@@ -31,7 +44,7 @@ vector<string> paths;
 
 
 void AddFileExtension(std::string const & ext) {
-	fileExt.push_back(ext);
+	fileExt.push_back("." + ext);
 }
 
 void AddFolderPath(std::string const & path) {

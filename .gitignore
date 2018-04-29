@@ -33,3 +33,7 @@
 
 #Visual Studio folder
 .vs
+
+x64
+Testfolder
+Debug
