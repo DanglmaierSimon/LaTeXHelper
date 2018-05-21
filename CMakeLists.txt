@@ -53,7 +53,6 @@ message("${PROJECT_NAME}: CURR BIN DIR: ${CMAKE_CURRENT_BINARY_DIR}")
 
 # Source Files
 set(SRC_FILES
-    ./Hlp.cpp
     ./main.cpp
     ./Printer.cpp
     ./ReadDir.cpp
@@ -62,7 +61,6 @@ source_group("Sources" FILES ${SRC_FILES})
 
 # Header Files
 set(HEADERS_FILES
-    Hlp.h
     Printer.h
     ReadDir.h
 )
