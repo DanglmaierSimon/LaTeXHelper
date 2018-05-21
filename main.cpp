@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 
+#include "clip/clip.h"
 #include "Printer.h"
 #include "ReadDir.h"
 
@@ -33,10 +34,12 @@ int main() {
 		cout << files[i] << endl;
 	}
 
-	PrintToConsole(files);
+	//PrintToConsole(files);
+    std::string tString = PrintToString(files);
+    std::cout << tString;
+    clip::set_text(tString);
 
-
-	cout << "Press a button to continue..." << endl;
+	//cout << "Press a button to continue..." << endl;
 	cin.get();
 
 	return 0;

@@ -103,3 +103,9 @@ endif()
 # Add project dependencies and Link to project             #
 ############################################################
 
+set(CLIP_EXAMPLES OFF CACHE BOOL "Compile clip examples")
+add_subdirectory(clip)
+
+target_link_libraries(${PROJECT_NAME}
+	clip
+)

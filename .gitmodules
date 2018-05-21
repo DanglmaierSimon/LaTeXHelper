@@ -1,0 +1,3 @@
+[submodule "clip"]
+	path = clip
+	url = git@github.com:dacap/clip.git

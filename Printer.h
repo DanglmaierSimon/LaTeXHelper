@@ -5,6 +5,7 @@
 #include <vector>
 
 void PrintToConsole(std::vector < std::string > const & vec);
+std::string PrintToString(std::vector < std::string > const & vec);
 
 
 
