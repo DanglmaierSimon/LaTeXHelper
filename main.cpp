@@ -22,8 +22,8 @@ int main() {
 
 	#pragma TODO("Ask user for additional file extensions")
 	AddFileExtension("c");
-	AddFileExtension(".cpp");
-	AddFileExtension(".h");
+	AddFileExtension("cpp");
+	AddFileExtension("h");
 
 
 
