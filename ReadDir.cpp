@@ -4,6 +4,7 @@
 #include <iostream>
 #include <algorithm>
 #include <dirent.h>
+#include <string>
 
 //---------------
 //Private Includes
@@ -101,7 +102,7 @@ bool ScanFile(dirent const * const dir) {
 	else if(dir->d_type != DT_REG) {
 		return false;
 	}
-	else if((dir->d_namlen) <= 2) {
+	else if((std::char_traits<char>::length(dir->d_name)) <= 2) {
 		return false;
 	}
 
