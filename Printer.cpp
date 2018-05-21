@@ -1,6 +1,5 @@
 #include <iostream>
 
-#include "Hlp.h"
 #include "Printer.h"
 
 using namespace std;

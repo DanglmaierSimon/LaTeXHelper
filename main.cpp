@@ -1,9 +1,6 @@
 #include <iostream>
 #include <string>
-#include <conio.h>
 
-
-#include "Hlp.h"
 #include "Printer.h"
 #include "ReadDir.h"
 
@@ -40,7 +37,7 @@ int main() {
 
 
 	cout << "Press a button to continue..." << endl;
-	_getch();
+	cin.get();
 
 	return 0;
 }
