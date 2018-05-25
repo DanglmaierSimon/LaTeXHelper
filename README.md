@@ -14,4 +14,5 @@ I guarantee nothing, it may even break your computer, use at your own risk.
 Currently the project is built using cmake, so you will need to install cmake and we are currently in the works of using the Poco C++ library for easier use of directories, so this will be needed too.
 
 Poco Library: https://pocoproject.org/download/index.html
+
 Cmake: https://cmake.org/download/
