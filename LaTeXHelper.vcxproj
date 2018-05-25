@@ -316,8 +316,25 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="D:\MEGA-Sync\C++\Programms\My own Programs\LaTeXHelper\main.cpp" />
     <ClCompile Include="D:\MEGA-Sync\C++\Programms\My own Programs\LaTeXHelper\Printer.cpp" />
     <ClCompile Include="D:\MEGA-Sync\C++\Programms\My own Programs\LaTeXHelper\ReadDir.cpp" />
+    <ClCompile Include="DirectoryScraper.cpp" />
+    <ClCompile Include="Extension.cpp" />
+    <ClCompile Include="ExtensionPreset.cpp" />
+    <ClCompile Include="FileextensionManager.cpp" />
+    <ClCompile Include="LatexHelper.cpp" />
+    <ClCompile Include="Leaf.cpp" />
+    <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="MenuEntry.cpp" />
     <ClInclude Include="D:\MEGA-Sync\C++\Programms\My own Programs\LaTeXHelper\Printer.h" />
     <ClInclude Include="D:\MEGA-Sync\C++\Programms\My own Programs\LaTeXHelper\ReadDir.h" />
+    <ClInclude Include="DirectoryScraper.h" />
+    <ClInclude Include="Extension.h" />
+    <ClInclude Include="ExtensionPreset.h" />
+    <ClInclude Include="FileextensionManager.h" />
+    <ClInclude Include="LatexHelper.h" />
+    <ClInclude Include="Leaf.h" />
+    <ClInclude Include="Menu.h" />
+    <ClInclude Include="MenuEntry.h" />
+    <ClInclude Include="Object.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="D:\MEGA-Sync\C++\Programms\My own Programs\LaTeXHelper\ZERO_CHECK.vcxproj">

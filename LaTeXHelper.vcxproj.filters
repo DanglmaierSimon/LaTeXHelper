@@ -10,12 +10,63 @@
     <ClCompile Include="D:\MEGA-Sync\C++\Programms\My own Programs\LaTeXHelper\ReadDir.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
+    <ClCompile Include="DirectoryScraper.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="ExtensionPreset.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Extension.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="FileextensionManager.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="LatexHelper.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Leaf.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuEntry.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="D:\MEGA-Sync\C++\Programms\My own Programs\LaTeXHelper\Printer.h">
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="D:\MEGA-Sync\C++\Programms\My own Programs\LaTeXHelper\ReadDir.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectoryScraper.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Extension.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="ExtensionPreset.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="FileextensionManager.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="LatexHelper.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Leaf.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuEntry.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>
