@@ -2,11 +2,11 @@
 
 
 
-FileextensionManager::FileextensionManager()
+FileExtensionManager::FileExtensionManager()
 {
 }
 
 
-FileextensionManager::~FileextensionManager()
+FileExtensionManager::~FileExtensionManager()
 {
 }

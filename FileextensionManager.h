@@ -1,10 +1,15 @@
-#pragma once
+//Multiple Inclusion Protection
+#ifndef FILEEXTENSIONMANAGER_H
+#define FILEEXTENSIONMANAGER_H
+
+
 #include "Object.h"
-class FileextensionManager :
+class FileExtensionManager :
 	public Object
 {
 public:
-	FileextensionManager();
-	~FileextensionManager();
+	FileExtensionManager();
+	~FileExtensionManager();
 };
 
+#endif//FILEEXTENSIONMANAGER_H
