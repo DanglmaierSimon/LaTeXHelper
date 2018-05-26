@@ -54,8 +54,17 @@ message("${PROJECT_NAME}: CURR BIN DIR: ${CMAKE_CURRENT_BINARY_DIR}")
 # Source Files
 set(SRC_FILES
     ./main.cpp
-    ./Printer.cpp
-    ./ReadDir.cpp
+    #./Printer.cpp
+    #./ReadDir.cpp
+
+	./DirectoryScraper.cpp
+	./Extension.cpp
+	./ExtensionPreset.cpp
+	./FileExtensionManager.cpp
+	./LatexHelper.cpp
+	./Leaf.cpp
+	./Menu.cpp
+	./MenuEntry.cpp
 )
 source_group("Sources" FILES ${SRC_FILES})
 
@@ -63,6 +72,15 @@ source_group("Sources" FILES ${SRC_FILES})
 set(HEADERS_FILES
     Printer.h
     ReadDir.h
+	DirectoryScraper.h
+	Extension.h
+	ExtensionPreset.h
+	FileExtensionManager.h
+	LatexHelper.h
+	Leaf.h
+	Menu.h
+	MenuEntry.h
+	Object.h
 )
 source_group("Headers" FILES ${HEADERS_FILES})
 
