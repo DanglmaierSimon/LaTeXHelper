@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
+#include <libclipboard.h>
 
-#include "clip/clip.h"
 #include "Printer.h"
 #include "ReadDir.h"
 
@@ -12,6 +12,8 @@ using namespace std;
 int main() {
 	string dirPath;
 	vector<string> files;
+	clipboard_c *cb = clipboard_new(NULL);
+	char *some_text_from_clipboard = clipboard_text(cb);
 
 	cout << "Please enter name of the directory." << endl;
 	cin >> dirPath;
@@ -37,10 +39,14 @@ int main() {
 	//PrintToConsole(files);
     std::string tString = PrintToString(files);
     std::cout << tString;
-    clip::set_text(tString);
+    clipboard_set_text(cb, tString.c_str());
+    
 
-	//cout << "Press a button to continue..." << endl;
-	cin.get();
+	cout << "Press a button to continue..." << endl;
+	getchar();
+	cin.get(); // idk else it won't work
+	//system("pause");
+	
 
 	return 0;
 }
