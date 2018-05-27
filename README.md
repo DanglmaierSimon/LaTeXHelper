@@ -10,3 +10,5 @@ This Project has only been tested on Windows 10, 64-bit, probably wont work on L
 Compilation was done on Visual Studio 2017, i dont know if it works on other versions too.
 
 I guarantee nothing, it may even break your computer, use at your own risk.
+## Dependencies
+* [libclipboard](https://github.com/jtanx/libclipboard)
