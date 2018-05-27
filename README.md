@@ -12,4 +12,4 @@ Compilation was done on Visual Studio 2017, i dont know if it works on other ver
 I guarantee nothing, it may even break your computer, use at your own risk.
 
 ## Dependencies
-[libclipboard](https://github.com/jtanx/libclipboard/tree/master/test)
+* [libclipboard](https://github.com/jtanx/libclipboard)
