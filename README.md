@@ -16,3 +16,6 @@ Currently the project is built using cmake, so you will need to install cmake an
 Poco Library: https://pocoproject.org/download/index.html
 
 Cmake: https://cmake.org/download/
+=======
+## Dependencies
+* [libclipboard](https://github.com/jtanx/libclipboard)
