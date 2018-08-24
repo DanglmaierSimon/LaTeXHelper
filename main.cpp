@@ -2,6 +2,8 @@
 #include <dirent.h>
 #include <unistd.h>
 #include <vector>
+#include <cassert>
+#include <getopt.h>
 
 int const flagSet = 1;
 int const flagNotSet = 0;
@@ -9,12 +11,18 @@ int const flagNotSet = 0;
 using namespace std;
 
 
+//Flags for Command line Arguments
+static int dbgFlag = flagNotSet;
+static int stdoutFlag = flagSet;
+static int fileoutFlag = flagNotSet;
+
+
 
 option static const options[] = {
-		//{"dir", required_argument, 0, 0},
+		{"dir", required_argument, 0, 0},
 		{"debug", no_argument,0,0},
 		{"stdout", no_argument, 0, 0},
-		//{"file", required_argument, 0, 0}
+		{"file", required_argument, 0, 0},
 		{0, 0, 0, 0}
 };
 
