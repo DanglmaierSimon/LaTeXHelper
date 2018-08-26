@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <vector>
 #include <cassert>
+#include <algorithm>
 #include <getopt.h>
 
 int const flagSet = 1;
@@ -155,9 +156,9 @@ void CheckArguments(int argc, char** argv) {
 
 
     //TODO: read in extensions, remove these testing extensions
-    exts.emplace_back("h");
-    exts.emplace_back("cpp");
-    exts.emplace_back("c");
+    exts.emplace_back(".h");
+    exts.emplace_back(".cpp");
+    exts.emplace_back(".c");
 
 
 
@@ -210,7 +211,7 @@ void ReadDir(DIR* directory) {
 
         if(ScanFile(direntry) && ScanFileExt(string(direntry->d_name))) {
             //TODO: Implement the printing to file or stdout
-            cout << "Found a file: "<<endl;
+            cout << "Found a file with matching extension: "<<endl;
             cout << direntry->d_name << endl;
         }
 
@@ -220,30 +221,31 @@ void ReadDir(DIR* directory) {
 
 bool ScanFileExt(string const & name) {
 
-    for(size_t i = 0; i < exts.size(); i++) {
-        size_t endIndex = name.find_last_of('.');
+	//for(size_t i = 0; i < exts.size(); i++) {
+	size_t endIndex = name.find_last_of('.');
 
-        if(endIndex == string::npos){
-            return false;
-        }
-        string fileExt{name, endIndex, name.size()};
+	if (endIndex == string::npos) {
+		return false;
+	}
 
-        return (fileExt == exts[i]);
-    }
+	string fileExt{name, endIndex, name.size()};
 
-    return false;
+	return (find(exts.cbegin(), exts.cend(), fileExt) != exts.cend());
+	//}
+
+	//return false;
 }
 
 bool ScanFile(dirent* dir) {
-    if(dir == nullptr) {
-        return false;
-    }
-    else if(dir->d_type != DT_REG) {
-        return false;
-    }
-    else if((std::char_traits<char>::length(dir->d_name)) <= 2) {
-        return false;
-    }
+	if (dir == nullptr) {
+		return false;
+	}
+	else if (dir->d_type != DT_REG) {
+		return false;
+	}
+	else if (string{dir->d_name}.size() <= 2) {
+		return false;
+	}
 
-    return true;
+	return true;
 }
