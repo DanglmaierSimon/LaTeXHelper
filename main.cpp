@@ -17,22 +17,28 @@ using namespace std;
 
 
 //Flags for Command line Arguments
-static int dbgFlag = flagNotSet;
-static int stdoutFlag = flagSet;
-static int fileoutFlag = flagNotSet;
+
+struct flags{
+	int dbgFlag = flagNotSet;
+	int stdoutFlag = flagSet;
+	int fileoutFlag = flagNotSet;
+};
+
+static flags progFlags;
+
 
 
 
 option static const options[] = {
 		//Options that set a flag:
-		{"debug",   no_argument,        &dbgFlag,       flagSet},
-		{"stdout",  no_argument,        &stdoutFlag,    flagSet},
-		{"file",    required_argument,  &fileoutFlag,   flagSet},
+		{"debug",   no_argument,        &progFlags.dbgFlag,       flagSet},
+		{"stdout",  no_argument,        &progFlags.stdoutFlag,    flagSet},
+		{"file",    required_argument,  &progFlags.fileoutFlag,   flagSet},
 
 
 		//Options, that dont set a flag:
-		{"dir",     required_argument,  0,  'r'},
-		{"ext",     required_argument,  0,  'e'},
+		{"dir",     required_argument, nullptr,  'r'},
+		{"ext",     required_argument, nullptr,  'e'},
 
 		{0, 0, 0, 0}
 };
@@ -40,55 +46,11 @@ option static const options[] = {
 //Default file extensions are .h, .hpp, .c, .cpp
 static vector<string> exts;
 
-
-
-
-
-
-/*
-
-int main() {
-	string dirPath;
-	vector<string> files;
-
-	cout << "Please enter name of the directory." << endl;
-	cin >> dirPath;
-
-	cout << "Path: " << dirPath << endl;;
-
-	#pragma TODO("Ask user for additional paths")
-	AddFolderPath(dirPath);
-
-	#pragma TODO("Ask user for additional file extensions")
-	AddFileExtension("c");
-	AddFileExtension("cpp");
-	AddFileExtension("h");
-
-
-
-	files = StartReadingDirs();
-
-	for(size_t i = 0; i < files.size(); ++i) {
-		cout << files[i] << endl;
-	}
-
-	PrintToConsole(files);
-
-
-	cout << "Press a button to continue..." << endl;
-	cin.get();
-
-	return 0;
-}
-
- */
-
-
 bool ScanFile(dirent* dir);
 bool ScanFileExt(string const & name);
 int CheckArguments(int argc, char** argv);
 void PrintHelp();
-void ReadDir(DIR* directory, bool stdOutFlag = false);
+void ReadDir(DIR* directory, flags const & flg);
 
 //Splits a string by the delimiters and stores the result in a vector, used
 //to extract the extensions from the command line arguments
@@ -103,7 +65,6 @@ int main(int argc, char** argv) {
 
 	CheckArguments(argc, argv);
 
-
 	return 0;
 }
 
@@ -111,8 +72,7 @@ int CheckArguments(int argc, char** argv) {
 	int optIdx;
 	int opt;
 
-	DIR* directory;
-	dirent* dirptr = nullptr;
+	DIR* directory = nullptr;
 
 	//acceptable arguments:
 	//p: print to stdout
@@ -137,7 +97,7 @@ int CheckArguments(int argc, char** argv) {
 				SplitString(string(optarg), ';', exts);
 
 				cout << "Listing extracted extensions: " << endl;
-				for (auto elem : exts) {
+				for (auto const & elem : exts) {
 					cout << elem << endl;
 				}
 
@@ -145,12 +105,12 @@ int CheckArguments(int argc, char** argv) {
 
 			case 'p':
 				cout << "Option p: Print to stdout" << endl;
-				assert(stdoutFlag == flagSet);
+				//assert(stdoutFlag == flagSet);
 				break;
 
 			case 'd':
 				cout << "Option d: Debug mode (verbose logging to stdout)" << endl;
-				assert(dbgFlag == flagSet);
+				//assert(dbgFlag == flagSet);
 				break;
 
 			case 'r':
@@ -163,12 +123,14 @@ int CheckArguments(int argc, char** argv) {
 			case '?':
 				cout << "Error: Unknown argument" << endl;
 
+			default:
+				cout << "unknown error" << endl;
 				return errUnknownArg;
 
 		}
 	}
 
-	ReadDir(directory, stdoutFlag);
+	ReadDir(directory, progFlags);
 
 
 	closedir(directory);
@@ -184,8 +146,8 @@ void PrintHelp(){
 
 
 //Opens & reads the specified directory and returns any files that match the endings specified
-void ReadDir(DIR* directory, bool stdOutFlag) {
-	dirent* direntry;
+void ReadDir(DIR* directory, flags const & flg) {
+	dirent* direntry = nullptr;
 
 	if (directory == nullptr) {
 		return;
@@ -197,7 +159,7 @@ void ReadDir(DIR* directory, bool stdOutFlag) {
 		if (ScanFile(direntry) && ScanFileExt(string(direntry->d_name))) {
 
 			//TODO: Implement the printing to file or stdout
-			if (stdoutFlag) {
+			if (progFlags.stdoutFlag) {
 				cout << "Found a file with matching extension: " << endl;
 				cout << direntry->d_name << endl;
 			}
