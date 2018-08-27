@@ -136,6 +136,13 @@ void CheckArguments(int argc, char** argv) {
 
 		    case 'e':
 			    cout << "Option e: Extensions with argument " << optarg << endl;
+			    SplitString(string(optarg), ';', exts);
+
+			    cout << "Listing extracted extensions: "<< endl;
+			    for(auto elem : exts){
+			    	cout << elem << endl;
+			    }
+
 			    break;
 
 		    case 'p':
@@ -158,17 +165,6 @@ void CheckArguments(int argc, char** argv) {
 	    		break;
 	    }
     }
-
-
-    //TODO: read in extensions, remove these testing extensions
-    exts.emplace_back(".h");
-    exts.emplace_back(".cpp");
-    exts.emplace_back(".c");
-
-
-
-
-
 
     //assert(directory != nullptr)
     cout << "Listing files: "<<endl;
@@ -261,7 +257,7 @@ void SplitString(string const & str, char const & delim, vector<string> & res){
 
 	while(getline(ss, ext, delim)){
 		if(!ext.empty()){
-			res.push_back(ext);
+			res.push_back('.' + ext);
 		}
 	}
 
