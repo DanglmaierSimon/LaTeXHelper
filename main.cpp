@@ -10,6 +10,9 @@
 int const flagSet = 1;
 int const flagNotSet = 0;
 
+int const errUnknownArg = -1;
+int const errNoError = 0;
+
 using namespace std;
 
 
@@ -83,9 +86,9 @@ int main() {
 
 bool ScanFile(dirent* dir);
 bool ScanFileExt(string const & name);
-void CheckArguments(int argc, char** argv);
+int CheckArguments(int argc, char** argv);
 void PrintHelp();
-void ReadDir(DIR* directory);
+void ReadDir(DIR* directory, bool stdOutFlag = false);
 
 //Splits a string by the delimiters and stores the result in a vector, used
 //to extract the extensions from the command line arguments
@@ -95,103 +98,84 @@ void SplitString(string const & str, char const & delim, vector<string> & res);
 
 
 
-int main(int argc, char** argv){
-    cout << "Starting!" << endl;
+int main(int argc, char** argv) {
+	cout << "Starting!" << endl;
 
-    CheckArguments(argc, argv);
-
-
+	CheckArguments(argc, argv);
 
 
 	return 0;
 }
 
-void CheckArguments(int argc, char** argv) {
+int CheckArguments(int argc, char** argv) {
 	int optIdx;
 	int opt;
-    int testcounter = 0;
-	char* optargCopy;
 
 	DIR* directory;
 	dirent* dirptr = nullptr;
 
-    //acceptable arguments:
-    //p: print to stdout
-    //d: debug mode, verbose logging to stdout
-    while ((opt = getopt_long(argc, argv, "pdo:", options, &optIdx)) != -1) {
-	    cout << "Argument number " << ++testcounter << " read!" << endl;
+	//acceptable arguments:
+	//p: print to stdout
+	//d: debug mode, verbose logging to stdout
+	while ((opt = getopt_long(argc, argv, "pdo:", options, &optIdx)) != -1) {
 
-	    switch (opt) {
-		    case 0:
-			    cout << "Option: " << options[optIdx].name;
-			    if (optarg) {
-				    cout << " with argument " << optarg;
-			    }
-			    cout << endl;
-			    break;
+		switch (opt) {
+			case 0:
+				cout << "Option: " << options[optIdx].name;
+				if (optarg) {
+					cout << " with argument " << optarg;
+				}
+				cout << endl;
+				break;
 
-		    case 'o':
-			    cout << "Option o: Output to File with argument " << optarg << endl;
-			    break;
+			case 'o':
+				cout << "Option o: Output to File with argument " << optarg << endl;
+				break;
 
-		    case 'e':
-			    cout << "Option e: Extensions with argument " << optarg << endl;
-			    SplitString(string(optarg), ';', exts);
+			case 'e':
+				cout << "Option e: Extensions with argument " << optarg << endl;
+				SplitString(string(optarg), ';', exts);
 
-			    cout << "Listing extracted extensions: "<< endl;
-			    for(auto elem : exts){
-			    	cout << elem << endl;
-			    }
+				cout << "Listing extracted extensions: " << endl;
+				for (auto elem : exts) {
+					cout << elem << endl;
+				}
 
-			    break;
+				break;
 
-		    case 'p':
-			    cout << "Option p: Print to stdout" << endl;
-			    break;
+			case 'p':
+				cout << "Option p: Print to stdout" << endl;
+				assert(stdoutFlag == flagSet);
+				break;
 
-		    case 'd':
-			    cout << "Option d: Debug mode (verbose logging to stdout)" << endl;
-			    break;
+			case 'd':
+				cout << "Option d: Debug mode (verbose logging to stdout)" << endl;
+				assert(dbgFlag == flagSet);
+				break;
 
-	    	case 'r':
-	    		cout << "Option r: Directory to read with argument "<<optarg <<endl;
-			    optargCopy = optarg;
+			case 'r':
+				cout << "Option r: Directory to read with argument " << optarg << endl;
+				directory = opendir(optarg);
 
-	    		directory = opendir(optargCopy);
-	    		break;
+				assert(directory != nullptr);
+				break;
 
-	    	case '?':
-	    		cout << "Error: Unknown argument" << endl;
-	    		break;
-	    }
-    }
+			case '?':
+				cout << "Error: Unknown argument" << endl;
 
-    //assert(directory != nullptr)
-    cout << "Listing files: "<<endl;
-    while(directory){
-        errno = 0;
+				return errUnknownArg;
 
-        if((dirptr = readdir(directory)) != nullptr){
-            cout << dirptr->d_name<<endl;
-        }
-        else{
-            break;
-        }
-    }
-    closedir(directory);
+		}
+	}
 
-	directory = opendir(optargCopy);
-
-    ReadDir(directory);
+	ReadDir(directory, stdoutFlag);
 
 
-    closedir(directory);
+	closedir(directory);
 
-    cout << "Done!"<<endl;
+	cout << "Done!" << endl;
 
-
-
-
+	return errNoError;
 }
 
 void PrintHelp(){
@@ -200,29 +184,30 @@ void PrintHelp(){
 
 
 //Opens & reads the specified directory and returns any files that match the endings specified
-void ReadDir(DIR* directory) {
-    dirent* direntry;
+void ReadDir(DIR* directory, bool stdOutFlag) {
+	dirent* direntry;
 
-    if(directory == nullptr) {
-        return;
-    }
+	if (directory == nullptr) {
+		return;
+	}
 
-    do {
-        direntry = readdir(directory);
+	do {
+		direntry = readdir(directory);
 
-        if(ScanFile(direntry) && ScanFileExt(string(direntry->d_name))) {
-            //TODO: Implement the printing to file or stdout
-            cout << "Found a file with matching extension: "<<endl;
-            cout << direntry->d_name << endl;
-        }
+		if (ScanFile(direntry) && ScanFileExt(string(direntry->d_name))) {
+
+			//TODO: Implement the printing to file or stdout
+			if (stdoutFlag) {
+				cout << "Found a file with matching extension: " << endl;
+				cout << direntry->d_name << endl;
+			}
+		}
 
 
-    } while(direntry != nullptr);
+	} while (direntry != nullptr);
 }
 
 bool ScanFileExt(string const & name) {
-
-	//for(size_t i = 0; i < exts.size(); i++) {
 	size_t endIndex = name.find_last_of('.');
 
 	if (endIndex == string::npos) {
@@ -232,31 +217,26 @@ bool ScanFileExt(string const & name) {
 	string fileExt{name, endIndex, name.size()};
 
 	return (find(exts.cbegin(), exts.cend(), fileExt) != exts.cend());
-	//}
-
-	//return false;
 }
 
 bool ScanFile(dirent* dir) {
 	if (dir == nullptr) {
 		return false;
-	}
-	else if (dir->d_type != DT_REG) {
+	} else if (dir->d_type != DT_REG) {
 		return false;
-	}
-	else if (string{dir->d_name}.size() <= 2) {
+	} else if (string{dir->d_name}.size() <= 2) {
 		return false;
 	}
 
 	return true;
 }
 
-void SplitString(string const & str, char const & delim, vector<string> & res){
+void SplitString(string const & str, char const & delim, vector<string> & res) {
 	stringstream ss(str);
 	string ext;
 
-	while(getline(ss, ext, delim)){
-		if(!ext.empty()){
+	while (getline(ss, ext, delim)) {
+		if (!ext.empty()) {
 			res.push_back('.' + ext);
 		}
 	}
