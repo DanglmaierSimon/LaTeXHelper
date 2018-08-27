@@ -37,28 +37,29 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="LaTeXHelper (disassembly)" value="3" />
+          <entry key="LaTeXHelper (disassembly)" value="7" />
           <entry key="cpp" value="1" />
+          <entry key="h" value="3" />
           <entry key="txt" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CMakeLists.txt" value="1" />
-          <entry key="Disassembly" value="3" />
-          <entry key="ObjectiveC" value="1" />
+          <entry key="Disassembly" value="7" />
+          <entry key="ObjectiveC" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="cpp" value="2786" />
-          <entry key="txt" value="340" />
+          <entry key="cpp" value="4131" />
+          <entry key="txt" value="574" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="ObjectiveC" value="2786" />
-          <entry key="PLAIN_TEXT" value="340" />
+          <entry key="ObjectiveC" value="4131" />
+          <entry key="PLAIN_TEXT" value="574" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.cidr.testingFrameworks.usages" />
@@ -69,7 +70,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1470">
+            <state relative-caret-position="858">
               <caret line="98" column="54" selection-start-line="98" selection-start-column="54" selection-end-line="98" selection-end-column="54" />
             </state>
           </provider>
@@ -78,8 +79,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="218">
-              <caret line="168" column="34" lean-forward="true" selection-start-line="168" selection-start-column="34" selection-end-line="168" selection-end-column="34" />
+            <state relative-caret-position="1035">
+              <caret line="69" lean-forward="true" selection-start-line="69" selection-end-line="69" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -113,9 +114,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="353" />
-    <option name="width" value="1262" />
-    <option name="height" value="691" />
+    <option name="x" value="263" />
+    <option name="width" value="1252" />
+    <option name="height" value="690" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -175,7 +176,7 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LaTeXHelper" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="-pd -o $PROJECT_DIR$/../../../../test.txt --ext h;cpp;c;py; --stdout --debug --dir $PROJECT_DIR$/testdir/" PASS_PARENT_ENVS_2="true" PROJECT_NAME="LaTeXHelper" TARGET_NAME="LaTeXHelper" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="LaTeXHelper" RUN_TARGET_NAME="LaTeXHelper">
+    <configuration name="LaTeXHelper" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="-pd -o $PROJECT_DIR$/../../../../test.txt --ext h;cpp;c;py; --stdout --debug --dir $PROJECT_DIR$/testdir/ --name-as-caption --lang C++" PASS_PARENT_ENVS_2="true" PROJECT_NAME="LaTeXHelper" TARGET_NAME="LaTeXHelper" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="LaTeXHelper" RUN_TARGET_NAME="LaTeXHelper">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -196,7 +197,7 @@
       <workItem from="1535118074845" duration="11000" />
       <workItem from="1535283083913" duration="8918000" />
       <workItem from="1535361353383" duration="5206000" />
-      <workItem from="1535366909970" duration="928000" />
+      <workItem from="1535366909970" duration="6310000" />
     </task>
     <task id="LOCAL-00001" summary="Modified CMakeLists.txt">
       <created>1535109569482</created>
@@ -240,11 +241,18 @@
       <option name="project" value="LOCAL" />
       <updated>1535365831452</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Various Changes&#10;&#10;Implemented default case in switch statement&#10;Added Struct for programm flags to group them together&#10;Various small changed to readability and added intitialisation to some&#10;variables">
+      <created>1535367932962</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1535367932962</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17714000" />
+    <option name="totallyTimeSpent" value="23096000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -259,12 +267,12 @@
     <frame x="0" y="0" width="1920" height="1044" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26040554" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.26040554" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.2262295" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2262295" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -280,6 +288,28 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Database" order="3" />
     </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26040554" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.2262295" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32896176" />
+      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Messages" order="8" weight="0.23825137" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32896176" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50053364" side_tool="true" weight="0.23387977" />
+      <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.4994664" weight="0.23387977" />
+      <window_info anchor="bottom" id="CMake" order="12" weight="0.2513661" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -323,25 +353,41 @@
     <MESSAGE value="Implement Split String function for extension extraction" />
     <MESSAGE value="Implemented logic for extracting extensions from the command line" />
     <MESSAGE value="Delete Binary file" />
-    <option name="LAST_COMMIT_MESSAGE" value="Delete Binary file" />
+    <MESSAGE value="Various Changes&#10;&#10;Implemented default case in switch statement&#10;Added Struct for programm flags to group them together&#10;Various small changed to readability and added intitialisation to some&#10;variables" />
+    <option name="LAST_COMMIT_MESSAGE" value="Various Changes&#10;&#10;Implemented default case in switch statement&#10;Added Struct for programm flags to group them together&#10;Various small changed to readability and added intitialisation to some&#10;variables" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/main.cpp</url>
-          <line>156</line>
+          <line>173</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/main.cpp</url>
-          <line>94</line>
+          <line>102</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/main.cpp</url>
-          <line>139</line>
+          <line>156</line>
           <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/main.cpp</url>
+          <line>70</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/main.cpp</url>
+          <line>219</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/main.cpp</url>
+          <line>230</line>
+          <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -349,15 +395,22 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1470">
+        <state relative-caret-position="858">
           <caret line="98" column="54" selection-start-line="98" selection-start-column="54" selection-end-line="98" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/c++/5/bits/basic_string.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="347">
+          <caret line="4873" selection-start-line="4873" selection-end-line="4873" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="168" column="34" lean-forward="true" selection-start-line="168" selection-start-column="34" selection-end-line="168" selection-end-column="34" />
+        <state relative-caret-position="1035">
+          <caret line="69" lean-forward="true" selection-start-line="69" selection-end-line="69" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>

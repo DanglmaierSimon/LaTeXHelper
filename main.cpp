@@ -8,7 +8,6 @@
 #include <sstream>
 
 int const flagSet = 1;
-int const flagNotSet = 0;
 
 int const errUnknownArg = -1;
 int const errNoError = 0;
@@ -19,28 +18,36 @@ using namespace std;
 //Flags for Command line Arguments
 
 struct flags{
-	int dbgFlag = flagNotSet;
-	int stdoutFlag = flagSet;
-	int fileoutFlag = flagNotSet;
+	int dbgFlag;
+	int stdoutFlag;
+	int fileoutFlag;
+	int fileNameAsCaption;
+	int customCaption;
 };
 
 static flags progFlags;
+static string caption;
+static string language;
 
 
 
-
+//TODO: Fix the values for the characters identifying the options to avoid conflicts
 option static const options[] = {
 		//Options that set a flag:
 		{"debug",   no_argument,        &progFlags.dbgFlag,       flagSet},
 		{"stdout",  no_argument,        &progFlags.stdoutFlag,    flagSet},
 		{"file",    required_argument,  &progFlags.fileoutFlag,   flagSet},
+		{"name-as-caption", no_argument, &progFlags.fileNameAsCaption, flagSet},
+
 
 
 		//Options, that dont set a flag:
-		{"dir",     required_argument, nullptr,  'r'},
-		{"ext",     required_argument, nullptr,  'e'},
+		{"dir",     required_argument, nullptr, 'r'},
+		{"ext",     required_argument, nullptr, 'e'},
+		{"caption", required_argument, nullptr, 'x'},
+		{"lang",    required_argument, nullptr, 'l'},
 
-		{0, 0, 0, 0}
+		{nullptr, 0, nullptr, 0}
 };
 
 //Default file extensions are .h, .hpp, .c, .cpp
@@ -50,13 +57,14 @@ bool ScanFile(dirent* dir);
 bool ScanFileExt(string const & name);
 int CheckArguments(int argc, char** argv);
 void PrintHelp();
-void ReadDir(DIR* directory, flags const & flg);
+void ReadDir(DIR* directory, flags const & flgs);
 
 //Splits a string by the delimiters and stores the result in a vector, used
 //to extract the extensions from the command line arguments
 void SplitString(string const & str, char const & delim, vector<string> & res);
 
-
+void PrintInputListing(string const & filename, flags const & flgs);
+string PrintOptions(string const & fileName, flags const & flgs);
 
 
 
@@ -120,8 +128,17 @@ int CheckArguments(int argc, char** argv) {
 				assert(directory != nullptr);
 				break;
 
+			case 'x':
+				caption = string(optarg);
+				break;
+
+			case 'l':
+				language = string(optarg);
+				break;
+
 			case '?':
 				cout << "Error: Unknown argument" << endl;
+				break;
 
 			default:
 				cout << "unknown error" << endl;
@@ -146,7 +163,7 @@ void PrintHelp(){
 
 
 //Opens & reads the specified directory and returns any files that match the endings specified
-void ReadDir(DIR* directory, flags const & flg) {
+void ReadDir(DIR* directory, flags const & flgs) {
 	dirent* direntry = nullptr;
 
 	if (directory == nullptr) {
@@ -157,12 +174,7 @@ void ReadDir(DIR* directory, flags const & flg) {
 		direntry = readdir(directory);
 
 		if (ScanFile(direntry) && ScanFileExt(string(direntry->d_name))) {
-
-			//TODO: Implement the printing to file or stdout
-			if (progFlags.stdoutFlag) {
-				cout << "Found a file with matching extension: " << endl;
-				cout << direntry->d_name << endl;
-			}
+			PrintInputListing(string(direntry->d_name), flgs);
 		}
 
 
@@ -203,4 +215,43 @@ void SplitString(string const & str, char const & delim, vector<string> & res) {
 		}
 	}
 
+}
+
+void PrintInputListing(string const & filename, flags const & flgs) {
+	//TODO: Implement printing to file/Stdout based on the flags set, right now it just prints to stdout
+
+	string out;
+
+	//TODO: Finish this print
+	out = "\\lstinputlisting" + PrintOptions(filename, flgs) + "{" + filename + "}";
+
+	cout << out << endl;
+}
+
+string PrintOptions(string const & fileName,flags const & flgs) {
+	string ret;
+	vector<string> options;
+
+	if (flgs.fileNameAsCaption) {
+		options.push_back("caption=" + fileName);
+	}
+	else if (!caption.empty()) {
+		options.push_back("caption=" + caption);
+	}
+
+	if (!language.empty()){
+		options.push_back("language=" + language);
+	}
+
+	if (options.empty()) {
+		return "";
+	}
+	else {
+		ret += "[" + options.front();
+		for (int i = 1; i < options.size(); ++i) {
+			ret += ", " + options[i];
+		}
+	}
+
+	return ret + "]";
 }
