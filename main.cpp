@@ -5,6 +5,7 @@
 #include <cassert>
 #include <algorithm>
 #include <getopt.h>
+#include <sstream>
 
 int const flagSet = 1;
 int const flagNotSet = 0;
@@ -85,6 +86,10 @@ bool ScanFileExt(string const & name);
 void CheckArguments(int argc, char** argv);
 void PrintHelp();
 void ReadDir(DIR* directory);
+
+//Splits a string by the delimiters and stores the result in a vector, used
+//to extract the extensions from the command line arguments
+void SplitString(string const & str, char const & delim, vector<string> & res);
 
 
 
@@ -248,4 +253,16 @@ bool ScanFile(dirent* dir) {
 	}
 
 	return true;
+}
+
+void SplitString(string const & str, char const & delim, vector<string> & res){
+	stringstream ss(str);
+	string ext;
+
+	while(getline(ss, ext, delim)){
+		if(!ext.empty()){
+			res.push_back(ext);
+		}
+	}
+
 }
